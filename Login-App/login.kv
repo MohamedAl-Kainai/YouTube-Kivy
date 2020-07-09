@@ -1,0 +1,76 @@
+FloatLayout:
+    canvas:
+        Color:
+            rgba:app.theme_cls.bg_dark
+        Rectangle:
+            pos:self.pos
+            size:self.size
+
+    BoxLayout:
+        size_hint:1,1
+        pos_hint:{'center_x':0,'center_y':1}
+        orientation:'vertical'
+        canvas:
+            Color:
+                rgba:app.theme_cls.bg_normal
+            Ellipse:
+                pos: self.pos
+                size: self.size[0]*2,self.size[1]
+
+    FloatLayout:
+        pos_hint:{'y':.05}
+        size_hint:1,None
+        size:1,dp(20)
+        MDTextButton:
+            text:'help?'
+            pos_hint:{'center_x':.5,'y':1}
+
+        MDTextButton:
+            text:'create new account!'
+            pos_hint:{'center_x':.5,'y':0}
+
+    FloatLayout:
+        size_hint:None,None
+        size:dp(280),dp(250)
+        pos_hint:{'center_x':.5,'center_y':.6}
+        canvas:
+            Color:
+                rgba: app.theme_cls.bg_light
+            RoundedRectangle:
+                pos:self.pos
+                size:self.size
+                radius:[dp(20)]*4
+
+        canvas.before:
+            BorderImage:
+                source: 'shadow32.png'
+                border: (36,36,36,36)
+                size:self.size[0]+dp(40),self.size[1]+dp(40)
+                pos: self.pos[0]-dp(20),self.pos[1]-dp(20)
+
+        Image:
+            source:'icon.png'
+            pos_hint:{'center_x':.5,'center_y':.8}
+            size_hint:None,None
+
+        MDTextFieldRound:
+            icon_left: "email"
+            hint_text: "username"
+            pos_hint:{'center_x':.5,'center_y':.5}
+            size_hint:.8,None
+            normal_color:app.theme_cls.primary_dark
+
+        MDTextFieldRound:
+            icon_left: "key"
+            hint_text: "password"
+            pos_hint:{'center_x':.5,'center_y':.35}
+            size_hint:.8,None
+            normal_color:app.theme_cls.primary_dark
+
+        MDFillRoundFlatButton:
+            text:'login'
+            pos_hint:{'center_x':.5,'center_y':.15}
+            increment_width:dp(220)
+            height:dp(31)
+            on_release:
+                app.login_button()
