@@ -1,23 +1,16 @@
-FloatLayout:
-    canvas:
-        Color:
-            rgba:app.theme_cls.bg_dark
-        Rectangle:
-            pos:self.pos
-            size:self.size
+<Login>:
+    md_bg_color:app.theme_cls.primary_dark
 
-    BoxLayout:
-        size_hint:1,1
+    MDBoxLayout:
         pos_hint:{'center_x':0,'center_y':1}
-        orientation:'vertical'
         canvas:
             Color:
-                rgba:app.theme_cls.bg_normal
+                rgba:app.theme_cls.primary_color
             Ellipse:
                 pos: self.pos
                 size: self.size[0]*2,self.size[1]
 
-    FloatLayout:
+    MDFloatLayout:
         pos_hint:{'y':.05}
         size_hint:1,None
         size:1,dp(20)
@@ -29,31 +22,21 @@ FloatLayout:
             text:'create new account!'
             pos_hint:{'center_x':.5,'y':0}
 
-    FloatLayout:
+    MDFloatLayout: # Login Box
         size_hint:None,None
         size:dp(280),dp(250)
         pos_hint:{'center_x':.5,'center_y':.6}
-        canvas:
-            Color:
-                rgba: app.theme_cls.bg_light
-            RoundedRectangle:
-                pos:self.pos
-                size:self.size
-                radius:[dp(20)]*4
-
-        canvas.before:
-            BorderImage:
-                source: 'shadow32.png'
-                border: (36,36,36,36)
-                size:self.size[0]+dp(40),self.size[1]+dp(40)
-                pos: self.pos[0]-dp(20),self.pos[1]-dp(20)
+        md_bg_color:app.theme_cls.primary_light
+        radius:[dp(20)]*4
 
         Image:
-            source:'icon.png'
+            source:'app/images/icon.png'
             pos_hint:{'center_x':.5,'center_y':.8}
             size_hint:None,None
+            size:dp(70),dp(70)
 
         MDTextFieldRound:
+            id:username
             icon_left: "email"
             hint_text: "username"
             pos_hint:{'center_x':.5,'center_y':.5}
@@ -61,6 +44,7 @@ FloatLayout:
             normal_color:app.theme_cls.primary_dark
 
         MDTextFieldRound:
+            id:password
             icon_left: "key"
             hint_text: "password"
             pos_hint:{'center_x':.5,'center_y':.35}
@@ -72,5 +56,9 @@ FloatLayout:
             pos_hint:{'center_x':.5,'center_y':.15}
             increment_width:dp(220)
             height:dp(31)
-            on_release:
-                app.login_button()
+
+    MDIconButton:
+        id:ColorButton
+        icon:'format-color-fill'
+        on_release:
+            app.color.open()
