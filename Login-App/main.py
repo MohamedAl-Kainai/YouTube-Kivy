@@ -1,4 +1,6 @@
 from app.modules import *
+from kivymd.app import MDApp
+
 from app.screens.login import Login
 
 for i in os.listdir('./app/kv'):

@@ -1,4 +1,3 @@
-from kivymd.app import MDApp
 from kivymd.uix.menu import MDDropdownMenu
 from kivymd.uix.floatlayout import MDFloatLayout
 
